@@ -48,12 +48,12 @@ public class FormatSupport {
         return baseline.getTotalTime().getMedian().toUnits(Duration.SECONDS).getValue();
     }
 
-    public static Number getConfidence(MeasuredOperationList baseline, MeasuredOperationList current) {
-        return DataSeries.confidenceInDifference(baseline.getTotalTime(), current.getTotalTime());
+    public static Number getConfidencePercentage(MeasuredOperationList baseline, MeasuredOperationList current) {
+        return 100.0 * DataSeries.confidenceInDifference(baseline.getTotalTime(), current.getTotalTime());
     }
 
-    public static Number getDifference(MeasuredOperationList baseline, MeasuredOperationList current) {
-        return getDifference(baseline.getTotalTime(), current.getTotalTime());
+    public static Number getDifferencePercentage(MeasuredOperationList baseline, MeasuredOperationList current) {
+        return 100.0 * getDifference(baseline.getTotalTime(), current.getTotalTime()).doubleValue();
     }
 
     public static Number getDifference(DataSeries<Duration> baselineVersion, DataSeries<Duration> currentVersion) {
@@ -67,7 +67,7 @@ public class FormatSupport {
         Amount<Duration> current = currentVersion.getMedian();
         Amount<Duration> diff = current.minus(base);
 
-        return String.format("%s (%s)", diff.format(), 100.0 * FormatSupport.getDifference(baselineVersion, currentVersion).doubleValue());
+        return String.format("%s (%.2f%%)", diff.format(), FormatSupport.getDifference(baselineVersion, currentVersion).doubleValue());
     }
 
     public static String formatConfidence(DataSeries<Duration> baselineVersion, DataSeries<Duration> currentVersion) {

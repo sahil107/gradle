@@ -54,7 +54,7 @@
                         }
                     }
             },
-            yaxis: { min: -1 }, selection: { mode: 'xy' } };
+            yaxis: { min: unit == '%' ? -100.0 : 0 }, selection: { mode: 'xy' } };
         var chart = $.plot('#' + chartId, data, options);
         plots[chartId] = chart;
         var zoomFunction = function(plot, reset) {

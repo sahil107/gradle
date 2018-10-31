@@ -207,7 +207,9 @@ public abstract class HtmlPageGenerator<T> extends ReportRenderer<T, Writer> {
             Optional<DataSeries<Duration>> last = Lists.reverse(executionVersions).stream().filter(Objects::nonNull).findFirst();
             if (first.isPresent() && last.isPresent() && first.get() != last.get()) {
                 td().classAttr("numeric").text(FormatSupport.formatConfidence(first.get(), last.get())).end();
-                td().classAttr("numeric").text(FormatSupport.formatDifference(first.get(), last.get())).end();
+
+                String differenceCss = FormatSupport.getDifference(first.get(), last.get()).doubleValue() > 0 ? "max-value" : "min-value";
+                td().classAttr("numeric " + differenceCss).text(FormatSupport.formatDifference(first.get(), last.get())).end();
             } else {
                 td().text("").end();
                 td().text("").end();

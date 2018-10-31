@@ -44,8 +44,8 @@ public class TestDataGenerator extends ReportRenderer<PerformanceTestHistory, Wr
             .stream()
             .map(label -> executionDataForLabel(testHistory, label, FormatSupport::getTotalTimeSeconds, Function.identity()))
             .collect(Collectors.toList());
-        List<ExecutionData> confidenceData = extractBaselineData(testHistory, FormatSupport::getConfidence);
-        List<ExecutionData> differenceData = extractBaselineData(testHistory, FormatSupport::getDifference);
+        List<ExecutionData> confidenceData = extractBaselineData(testHistory, FormatSupport::getConfidencePercentage);
+        List<ExecutionData> differenceData = extractBaselineData(testHistory, FormatSupport::getDifferencePercentage);
 
         String json = new JsonGenerator.Options().excludeNulls().build().toJson(new AllExecutionData(executionLabels, totalTimeData, confidenceData, differenceData));
         out.print(json);

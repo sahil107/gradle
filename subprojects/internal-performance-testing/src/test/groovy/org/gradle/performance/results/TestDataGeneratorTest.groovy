@@ -63,21 +63,21 @@ class TestDataGeneratorTest extends ResultSpecification {
                 difference: [
                     [
                         label: 'master vs 5.0-mockbaseline-1',
-                        data: [[0, 1]]
+                        data: [[0, 100]]
                     ],
                     [
                         label: 'master vs 5.0-mockbaseline-2',
-                        data: [[1, -0.5]]
+                        data: [[1, -50]]
                     ],
                 ],
                 confidence: [
                     [
                         label: 'master vs 5.0-mockbaseline-1',
-                        data: [[0, 0.682689492137086]]
+                        data: [[0, 68.2689492137086]]
                     ],
                     [
                         label: 'master vs 5.0-mockbaseline-2',
-                        data: [[1, 0.682689492137086]]
+                        data: [[1, 68.2689492137086]]
                     ],
                 ],
             ]
